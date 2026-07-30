@@ -2,9 +2,9 @@ package main
 
 import "github.com/spf13/cobra"
 
-var cfgFile string
-
 func newRootCmd() *cobra.Command {
+	var configPath string
+
 	cmd := &cobra.Command{
 		Use:           "sumi",
 		Short:         "sumi is a command line tool",
@@ -15,8 +15,8 @@ func newRootCmd() *cobra.Command {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file path")
-	cmd.AddCommand(newConfigCmd())
+	cmd.PersistentFlags().StringVar(&configPath, "config", "", "config file path")
+	cmd.AddCommand(newConfigCmd(&configPath))
 	cmd.AddCommand(newVersionCmd())
 
 	return cmd

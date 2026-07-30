@@ -58,6 +58,55 @@ linters:
     - forbidigo
     - cyclop
 
+    # Safety / correctness
+    - asasalint
+    - bidichk
+    - canonicalheader
+    - containedctx
+    - contextcheck
+    - dogsled
+    - durationcheck
+    - errchkjson
+    - fatcontext
+    - forcetypeassert
+    - makezero
+    - nilnesserr
+    - nosprintfhostport
+    - rowserrcheck
+    - sqlclosecheck
+    - usestdlibvars
+
+    # Modernization / tests / performance
+    - copyloopvar
+    - modernize
+    - perfsprint
+    - testifylint
+    - dupword
+    - zerologlint
+
+    # Logging
+    - loggercheck
+    - sloglint
+
+    # Strict style / API hygiene
+    - embeddedstructfieldcheck
+    - funcorder
+    - gochecknoglobals
+    - godoclint
+    - gomodguard_v2
+    - inamedparam
+    - interfacebloat
+    - intrange
+    - protogetter
+    - ireturn
+    - mnd
+    - musttag
+    - nestif
+    - nlreturn
+    - tagliatelle
+    - wrapcheck
+    - wsl_v5
+
   exclusions:
     rules:
       - linters: [all]
@@ -66,6 +115,9 @@ linters:
         path: ".*_generated\\.go$"
       - linters: [lll]
         source: "^//go:generate "
+      # Go linker flags require writable package-level variables.
+      - linters: [gochecknoglobals]
+        path: "internal/vinfo/version\\.go$"
 
   settings:
     errcheck:
@@ -85,6 +137,22 @@ linters:
       lines: 80
       statements: 50
 
+    varnamelen:
+      min-name-length: 2
+      ignore-type-assert-ok: true
+      ignore-map-index-ok: true
+      ignore-chan-recv-ok: true
+      ignore-decls:
+        - i int
+        - n int
+        - r io.Reader
+        - w io.Writer
+        - b []byte
+        - s string
+        - t *testing.T
+        - b *testing.B
+        - ctx context.Context
+
     dupl:
       threshold: 100
 
@@ -98,6 +166,12 @@ linters:
 
     misspell:
       locale: US
+
+    forbidigo:
+      analyze-types: true
+      forbid:
+        - pattern: ^interface\{\}$
+          msg: empty interface banned; use a typed alternative.
 
     nakedret:
       max-func-lines: 30
@@ -140,6 +214,13 @@ linters:
         global:
           nosec: true
           audit: true
+
+    tagliatelle:
+      case:
+        rules:
+          json: snake
+          yaml: snake
+          mapstructure: snake
 
     gocritic:
       enabled-tags:
