@@ -151,4 +151,4 @@ linters:
 
     exhaustruct:
       include:
-        - ^github\.com/omarluq/og-template/.*
+        - ^github\.com/omarluq/sumi/.*

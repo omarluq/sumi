@@ -1,5 +1,5 @@
 app:
-  name: og-template
+  name: sumi
   env: development
 
 logging:

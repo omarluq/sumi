@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/omarluq/og-template/internal/vinfo"
+	"github.com/omarluq/sumi/internal/vinfo"
 )
 
 func newVersionCmd() *cobra.Command {
