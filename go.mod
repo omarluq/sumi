@@ -5,7 +5,7 @@ go 1.26.1
 require (
 	charm.land/fang/v2 v2.0.1
 	github.com/rs/zerolog v1.35.1
-	github.com/samber/do/v2 v2.0.0
+	github.com/samber/do/v2 v2.1.0
 	github.com/samber/lo v1.53.0
 	github.com/samber/mo v1.17.0
 	github.com/samber/oops v1.22.0
